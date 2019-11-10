@@ -15,11 +15,11 @@ var newQuote = function(){
 };
 
                                   var quotes = [
-  "Tony the type of guy to pull over cops for speeding",
-  "Tony is the type of guy who passes to half guard during sex.",
-  "Tony is the type of guy to dutch oven himself.",
-  "Tony is the type of guy to wipe his ass before taking a shit",
-                                    "Tony the type of guy to weld with sunglasses on",
+"Tony the type of guy to pull over cops for speeding",
+"Tony is the type of guy who passes to half guard during sex.",
+"Tony is the type of guy to dutch oven himself.",
+"Tony is the type of guy to wipe his ass before taking a shit",
+"Tony the type of guy to weld with sunglasses on",
 "Tony the type of guy to insist on handing the doctor the scalpel for his own surgery",
 "Tony the type of guy to cover his kitchen floor in legos to condition his feet",
 "Tony the type of guy to fight fire with a darce choke",
@@ -27,6 +27,7 @@ var newQuote = function(){
 "Tony the type of guy to drop ten pounds and move up a weight class",
 "Tony the type of guy to go scuba diving with a tank of compressed CO2",
 "Tony the type of guy to punish his kid by making him stay up late",
-"Tony the type of guy to wash his face with Tabasco sauce"
+"Tony the type of guy to wash his face with Tabasco sauce",
+"Tony Ferguson the type of guy to sit next to you on an empty bus"
                                     
 ]
