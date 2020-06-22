@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class myelement extends React.Component {
+class Myelement extends React.Component {
   render() {
     return 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -30,4 +30,4 @@ class myelement extends React.Component {
   }
 }
 
-ReactDOM.render(<myelement />, document.getElementById('navbar-node'));
+ReactDOM.render(<Myelement />, document.getElementById('navbar-node'));
