@@ -1,7 +1,5 @@
 'use strict';
 
-const e = React.createElement;
-
 class MainNavbar extends React.Component {
   constructor(props) {
     super(props);
@@ -41,5 +39,4 @@ class MainNavbar extends React.Component {
 
 
 //renders it to HTML document
-const domContainer1 = document.querySelector('#navbar-node');
-ReactDOM.render(e(MainNavbar), domContainer1)
+ReactDOM.render(<MainNavbar />, document.getElementById('navbar-node'))
