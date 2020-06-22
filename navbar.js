@@ -1,11 +1,6 @@
 'use strict';
 
-class MainNavbar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
+const myelement = (
 <div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -31,12 +26,8 @@ class MainNavbar extends React.Component {
     </div>
   </nav>
 </div>
-    )
-
-  }
-};
-
+    );
 
 
 //renders it to HTML document
-ReactDOM.render(<MainNavbar />, document.getElementById('navbar-node'))
+ReactDOM.render(myelement, document.getElementById('navbar-node'))
