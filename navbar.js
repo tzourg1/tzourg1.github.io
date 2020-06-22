@@ -1,5 +1,6 @@
-//defines class
+'use strict';
 
+const e = React.createElement;
 
 class MainNavbar extends React.Component {
   constructor(props) {
