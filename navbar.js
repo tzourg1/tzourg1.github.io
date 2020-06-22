@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const myelement = (
-<div>
+class myelement extends React.Component {
+  render() {
+    return 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <span style="text-decoration:bold;color:white;">ParadoxBJJ.com</span>
@@ -25,10 +26,8 @@ const myelement = (
         </ul>
       </div>
     </div>
-  </nav>
-</div>
-    );
+  </nav>;
+  }
+}
 
-
-//renders it to HTML document
-ReactDOM.render(myelement, document.getElementById('navbar-node'))
+ReactDOM.render(<myelement />, document.getElementById('navbar-node'));
