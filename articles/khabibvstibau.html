@@ -28,33 +28,16 @@
   
    <!-- Custom styles for this template -->
   <link href="css/clean-blog.min.css" rel="stylesheet">
+    <script src="jquery.js"></script> 
+    <script> 
+    $(function(){
+      $("#navbar_container").load("navbar.html"); 
+    });
+    </script> 
 </head>
-
 <body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <span style="text-decoration:bold;color:white;">ParadoxBJJ.com</span>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="https://tzourg1.github.io/">Home
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/articles">Articles</a>
-          </li>                 
-          <li class="nav-item">
-            <a class="nav-link" href="/contact">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  
+ <div id="navbar_container"></div>
 
   <!-- Page Header -->
   <header class="masthead" style="background-image: url('https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2018-11/NURMAGOMEDOV_KHABIB_L_0.png?40eAXRDfNpg8AA7JzlFA.cFSLGMZfw5h&itok=gcp29Y7d')">
