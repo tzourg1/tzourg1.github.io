@@ -1,6 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
 class NavbarMaster extends React.Component {
   constructor(props) {
     super(props);
