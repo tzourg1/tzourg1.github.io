@@ -136,6 +136,11 @@ a.socialIcon:hover, .socialHoverClass {
       $("#navbar_container").load("https://www.paradoxbjj.com/navbar.html"); 
     });
     </script> 
+	    <script> 
+    $(function(){
+      $("#footer_container").load("https://www.paradoxbjj.com/footer.html"); 
+    });
+    </script> 
 </head>
 <body>
   
@@ -175,17 +180,8 @@ a.socialIcon:hover, .socialHoverClass {
 
   <hr>
 
-  <!-- Footer -->
-  <footer>
-<!--END SASS--->
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-                    <p class="copyright text-muted">Copyright &copy; ParadoxBJJ.com 2019</p>
-        </div>
-      </div>
-    </div>
-  </footer>
+ <div id="footer_container"></div>
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
