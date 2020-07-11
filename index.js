@@ -18,6 +18,9 @@ const myfirstelement =     <div>
           <li class="nav-item">
             <a class="nav-link" href="/articles">Articles</a>
           </li>
+    <li class="nav-item">
+            <a class="nav-link" href="https://paradoxbjj.freeforums.net/">Forums</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="/contact">Contact</a>
           </li>
