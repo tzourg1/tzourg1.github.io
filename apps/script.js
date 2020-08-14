@@ -42,7 +42,7 @@ $(document).ready(function(){
 var newQuote2 = function(){
   var index = Math.floor(Math.random() * quotes.length);
   
-  $('span.quote').html('"' + quotes2[index] + '"');
+  $('span.quote2').html('"' + quotes2[index] + '"');
   
   $('a.twitter-share-button').attr('href', twitURI(quotes[index]));
 };
