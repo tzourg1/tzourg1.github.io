@@ -48,6 +48,7 @@ var newQuote2 = function(){
 };
 
                                   var quotes2 = [
-"Deez Nuts and Dem Titties
-                                    
+"Everyone has a plan 'till they get punched in the mouth.",
+"I've lived places these guys can't defecate in.",
+                          
 ]
