@@ -31,3 +31,23 @@ var newQuote = function(){
 "Tony Ferguson the type of guy to sit next to you on an empty bus"
                                     
 ]
+
+
+
+
+$(document).ready(function(){
+  newQuote2();
+});
+
+var newQuote2 = function(){
+  var index = Math.floor(Math.random() * quotes.length);
+  
+  $('span.quote').html('"' + quotes2[index] + '"');
+  
+  $('a.twitter-share-button').attr('href', twitURI(quotes[index]));
+};
+
+                                  var quotes2 = [
+"Deez Nuts and Dem Titties
+                                    
+]
