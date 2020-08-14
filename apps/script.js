@@ -35,20 +35,3 @@ var newQuote = function(){
 
 
 
-$(document).ready(function(){
-  newQuote2();
-});
-
-var newQuote2 = function(){
-  var index = Math.floor(Math.random() * quotes.length);
-  
-  $('span.quote2').html('"' + quotes2[index] + '"');
-  
-  $('a.twitter-share-button').attr('href', twitURI(quotes[index]));
-};
-
-                                  var quotes2 = [
-"Everyone has a plan 'till they get punched in the mouth.",
-"I've lived places these guys can't defecate in.",
-                          
-]
