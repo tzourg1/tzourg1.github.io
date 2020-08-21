@@ -15,18 +15,18 @@ var newQuote = function(){
 };
 
                                   var quotes = [
-"Everyone has a plan 'till they get punched in the mouth.",
-"As long as we persevere and endure, we can get anything we want.",
-"I normally don't do interviews with women unless I fornicate with them. So you shouldnt talk anymore unless you wanna...you know",
-"My back is broken...[Reporter: What Part?]... Spinal",
-"Im a convicted rapist, I'm a good father, I'm a semi-good husband.",
-"I paid a worker at New York's zoo to re-open it just for me and Robin. When we got to the gorilla cage there was 1 big silverback gorilla there just bullying all the other gorillas. They were so powerful but their eyes were like an innocent infant. I offered the attendant $10,000 to open the cage and let me smash that silverback's snotbox! He declined.",
-"I could sell out madison square gardens masturbating",
-"I'm gonna f you till you love me.",
-"God lets everything happen for a reason. It's all a learning process, and you have to go from one level to another.",
-"I want to rip out his heart and feed it to Lennox Lewis. I want to kill people. I want to rip their stomachs out and eat their children.",
-"When I was in prison, I was wrapped up in all those deep books. That Tolstoy crap - people shouldn't read that stuff.",
-"I think the average person thinks I'm a nut and I deserve whatever happens to me.",
-"I'm the biggest fighter in the history of the sport. If you don't believe it, check the cash register."
-"People are going to say what they say. I know sometimes I say things; I offend people."
+"Showing off is the fool's idea of glory.",
+"As you think, so shall you become.",
+"Having no limitation as limitation",
+"Adapt what is useful, reject what is useless, and add what is specifically your own.",
+"To hell with circumstances; I create opportunities.",
+"Knowledge will give you power, but character respect.",
+"If you love life, don't waste time, for time is what life is made up of.",
+"I fear not the man who has practiced 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times.",
+"If you spend too much time thinking about a thing, you'll never get it done.",
+"A wise man can learn more from a foolish question than a fool can learn from a wise answer.",
+"Always be yourself, express yourself, have faith in yourself, do not go out and look for a successful personality and duplicate it.",
+"Mistakes are always forgivable, if one has the courage to admit them.",
+"A goal is not always meant to be reached, it often serves simply as something to aim at.",
+"A wise man can learn more from a foolish question than a fool can learn from a wise answer."
 ]
