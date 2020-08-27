@@ -27,6 +27,6 @@ var newQuote = function(){
 "I want to rip out his heart and feed it to Lennox Lewis. I want to kill people. I want to rip their stomachs out and eat their children.",
 "When I was in prison, I was wrapped up in all those deep books. That Tolstoy crap - people shouldn't read that stuff.",
 "I think the average person thinks I'm a nut and I deserve whatever happens to me.",
-"I'm the biggest fighter in the history of the sport. If you don't believe it, check the cash register."
+"I'm the biggest fighter in the history of the sport. If you don't believe it, check the cash register.",
 "People are going to say what they say. I know sometimes I say things; I offend people."
 ]
