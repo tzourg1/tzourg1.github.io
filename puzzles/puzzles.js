@@ -2,7 +2,8 @@
   'use strict';
 
   const API = { daily: 'https://api.chess.com/pub/puzzle', random: 'https://api.chess.com/pub/puzzle/random' };
-  const pieces = { wp: '♙', wn: '♘', wb: '♗', wr: '♖', wq: '♕', wk: '♔', bp: '♟', bn: '♞', bb: '♝', br: '♜', bq: '♛', bk: '♚' };
+  const pieceImageBase = 'https://chessboardjs.com/img/chesspieces/wikipedia/';
+  const pieces = { wp: 'wP', wn: 'wN', wb: 'wB', wr: 'wR', wq: 'wQ', wk: 'wK', bp: 'bP', bn: 'bN', bb: 'bB', br: 'bR', bq: 'bQ', bk: 'bK' };
   const pieceNames = { p: 'pawn', n: 'knight', b: 'bishop', r: 'rook', q: 'queen', k: 'king' };
   const board = document.querySelector('#chessboard');
   const title = document.querySelector('#puzzle-title');
@@ -58,7 +59,7 @@
 
   function renderBoard() {
     board.innerHTML = '';
-    boardSquares().forEach(squareName => {
+    boardSquares().forEach((squareName, index) => {
       const square = document.createElement('button');
       const fileNumber = squareName.charCodeAt(0) - 96;
       const rankNumber = Number(squareName[1]);
@@ -72,11 +73,25 @@
       if (hintLevel >= 1 && solution[solutionIndex] && squareName === solution[solutionIndex].from) square.classList.add('hint-from');
       if (hintLevel >= 2 && solution[solutionIndex] && squareName === solution[solutionIndex].to) square.classList.add('hint-to');
       if (piece) {
-        const span = document.createElement('span');
-        span.className = `piece ${piece.color === 'w' ? 'white-piece' : 'black-piece'}`;
-        span.setAttribute('aria-hidden', 'true');
-        span.textContent = pieces[`${piece.color}${piece.type}`];
-        square.appendChild(span);
+        const image = document.createElement('img');
+        image.className = 'piece-image';
+        image.src = `${pieceImageBase}${pieces[`${piece.color}${piece.type}`]}.png`;
+        image.alt = '';
+        image.draggable = false;
+        image.setAttribute('aria-hidden', 'true');
+        square.appendChild(image);
+      }
+      if (index % 8 === 0) {
+        const rank = document.createElement('span');
+        rank.className = 'coordinate rank-coordinate';
+        rank.textContent = squareName[1];
+        square.appendChild(rank);
+      }
+      if (index >= 56) {
+        const file = document.createElement('span');
+        file.className = 'coordinate file-coordinate';
+        file.textContent = squareName[0];
+        square.appendChild(file);
       }
       square.addEventListener('click', () => chooseSquare(squareName));
       board.appendChild(square);
