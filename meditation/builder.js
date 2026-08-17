@@ -77,16 +77,38 @@
 
   const latinVoicePattern = /^es-(MX|US|419|AR|BO|CL|CO|CR|CU|DO|EC|GT|HN|NI|PA|PE|PR|PY|SV|UY|VE)/i;
   const feminineNamePattern = /(dalia|sabina|paulina|paloma|luciana|elena|sofia|maria|monica|rosa|laura|isabela|female|mujer)/i;
+  const russianVoicePattern = /^ru(?:-|_)/i;
+  const russianFeminineNamePattern = /(alena|alyona|anna|elena|irina|katya|katerina|milena|natalia|svetlana|tatyana|victoria|female|женщина)/i;
 
   function preferredLatinVoice() {
     const latinVoices = availableVoices.filter(voice => latinVoicePattern.test(voice.lang));
     return latinVoices.find(voice => feminineNamePattern.test(voice.name)) || latinVoices[0] || null;
   }
 
+  function preferredRussianVoice() {
+    const russianVoices = availableVoices.filter(voice => russianVoicePattern.test(voice.lang));
+    return russianVoices.find(voice => russianFeminineNamePattern.test(voice.name)) || russianVoices[0] || null;
+  }
+
   function selectedVoice() {
     if (voiceChoice.value === 'default') return null;
+    if (voiceChoice.value === 'russian-grandmother') return preferredRussianVoice();
     if (voiceChoice.value !== 'auto') return availableVoices.find(voice => voice.voiceURI === voiceChoice.value) || null;
     return preferredLatinVoice();
+  }
+
+  function updateVoiceStatus() {
+    if (voiceChoice.value === 'russian-grandmother') {
+      const russian = preferredRussianVoice();
+      voiceStatus.textContent = russian
+        ? `Russian Grandmother will use ${russian.name} (${russian.lang}) with slower, gentler delivery. Voice quality varies by device.`
+        : 'No Russian voice was found. The device default voice will use the slower, gentler delivery.';
+      return;
+    }
+    const preferred = preferredLatinVoice();
+    voiceStatus.textContent = preferred
+      ? `Preferred device voice: ${preferred.name} (${preferred.lang}). Voice quality varies by device.`
+      : 'No Latin American Spanish voice was found. The device default voice will be used.';
   }
 
   function refreshVoices() {
@@ -103,10 +125,7 @@
       option.textContent = `${voice.name} — ${voice.lang}`;
       voiceChoice.appendChild(option);
     });
-    const preferred = preferredLatinVoice();
-    voiceStatus.textContent = preferred
-      ? `Preferred device voice: ${preferred.name} (${preferred.lang}). Voice quality varies by device.`
-      : 'No Latin American Spanish voice was found. The device default voice will be used.';
+    updateVoiceStatus();
   }
 
   function interpretPrompt() {
@@ -202,8 +221,9 @@
     if (!session || session.voice !== 'spoken' || !('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     const message = new SpeechSynthesisUtterance(text);
-    message.rate = 0.82;
-    message.pitch = 0.95;
+    const russianGrandmother = voiceChoice.value === 'russian-grandmother';
+    message.rate = russianGrandmother ? 0.72 : 0.82;
+    message.pitch = russianGrandmother ? 0.82 : 0.95;
     const narrator = selectedVoice();
     if (narrator) {
       message.voice = narrator;
@@ -345,6 +365,7 @@
   }
 
   form.addEventListener('input', renderPreview);
+  voiceChoice.addEventListener('change', updateVoiceStatus);
   promptButton.addEventListener('click', interpretPrompt);
   form.addEventListener('submit', event => {
     event.preventDefault();
