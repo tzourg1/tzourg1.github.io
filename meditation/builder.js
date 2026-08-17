@@ -11,11 +11,15 @@
   };
 
   const form = document.querySelector('#builder-form');
+  const promptInput = document.querySelector('#meditation-prompt');
+  const promptButton = document.querySelector('#create-from-prompt');
   const nameInput = document.querySelector('#session-name');
   const intentionInput = document.querySelector('#intention');
   const lengthInput = document.querySelector('#session-length');
   const voiceInput = document.querySelector('#voice-setting');
   const ambienceInput = document.querySelector('#ambience');
+  const voiceChoice = document.querySelector('#voice-choice');
+  const voiceStatus = document.querySelector('#voice-status');
   const optionInputs = Array.from(document.querySelectorAll('#segment-options input'));
   const planList = document.querySelector('#session-plan');
   const previewHeading = document.querySelector('#preview-heading');
@@ -38,6 +42,86 @@
   let activeSegment = -1;
   let audioContext = null;
   let ambienceNodes = [];
+  let availableVoices = [];
+
+  const latinVoicePattern = /^es-(MX|US|419|AR|BO|CL|CO|CR|CU|DO|EC|GT|HN|NI|PA|PE|PR|PY|SV|UY|VE)/i;
+  const feminineNamePattern = /(dalia|sabina|paulina|paloma|luciana|elena|sofia|maria|monica|rosa|laura|isabela|female|mujer)/i;
+
+  function preferredLatinVoice() {
+    const latinVoices = availableVoices.filter(voice => latinVoicePattern.test(voice.lang));
+    return latinVoices.find(voice => feminineNamePattern.test(voice.name)) || latinVoices[0] || null;
+  }
+
+  function selectedVoice() {
+    if (voiceChoice.value === 'default') return null;
+    if (voiceChoice.value !== 'auto') return availableVoices.find(voice => voice.voiceURI === voiceChoice.value) || null;
+    return preferredLatinVoice();
+  }
+
+  function refreshVoices() {
+    if (!('speechSynthesis' in window)) {
+      voiceStatus.textContent = 'Spoken narration is not supported by this browser. On-screen prompts will still work.';
+      return;
+    }
+    availableVoices = window.speechSynthesis.getVoices();
+    const existing = new Set(Array.from(voiceChoice.options).map(option => option.value));
+    availableVoices.filter(voice => latinVoicePattern.test(voice.lang)).forEach(voice => {
+      if (existing.has(voice.voiceURI)) return;
+      const option = document.createElement('option');
+      option.value = voice.voiceURI;
+      option.textContent = `${voice.name} — ${voice.lang}`;
+      voiceChoice.appendChild(option);
+    });
+    const preferred = preferredLatinVoice();
+    voiceStatus.textContent = preferred
+      ? `Preferred device voice: ${preferred.name} (${preferred.lang}). Voice quality varies by device.`
+      : 'No Latin American Spanish voice was found. The device default voice will be used.';
+  }
+
+  function interpretPrompt() {
+    const text = promptInput.value.trim();
+    if (!text) {
+      formMessage.textContent = 'Describe the meditation you want first.';
+      promptInput.focus();
+      return;
+    }
+    const lower = text.toLowerCase();
+    const duration = lower.match(/(\d{1,2})\s*(?:minute|minuto|minutos|min)\b/);
+    if (duration) {
+      const requested = Number(duration[1]);
+      const allowed = [5, 10, 15, 20];
+      lengthInput.value = String(allowed.reduce((best, value) => Math.abs(value - requested) < Math.abs(best - requested) ? value : best));
+    }
+    const intentionRules = [
+      ['sleep', /(sleep|bedtime|rest|insomnia|dormir|sueño|descanso)/],
+      ['confidence', /(confidence|courage|brave|competition|tournament|confianza|valor|torneo)/],
+      ['focus', /(focus|concentrat|study|work|chess|enfoque|concentración|ajedrez)/],
+      ['recovery', /(recover|healing|pain|training|workout|recuper|sanar|dolor)/],
+      ['calm', /(calm|anxiety|stress|relax|peace|tranquil|ansiedad|estrés|paz)/]
+    ];
+    const matchedIntention = intentionRules.find(rule => rule[1].test(lower));
+    if (matchedIntention) intentionInput.value = matchedIntention[0];
+
+    const segmentRules = {
+      arrive: /(arrive|ground|settle|present|llegar|presente)/,
+      breathe: /(breath|breathing|respira|respiración)/,
+      body: /(body|scan|muscle|cuerpo|escaneo)/,
+      visualize: /(visual|imagine|picture|visualiza|imagina)/,
+      silence: /(silence|quiet|pause|silencio|tranquil)/,
+      close: /(close|closing|ending|finish|cierre|final)/
+    };
+    const explicitSegments = Object.keys(segmentRules).filter(key => segmentRules[key].test(lower));
+    if (explicitSegments.length) optionInputs.forEach(input => { input.checked = explicitSegments.includes(input.value); });
+    if (/(no voice|silent guidance|text only|sin voz|solo texto)/.test(lower)) voiceInput.value = 'text';
+    else voiceInput.value = 'spoken';
+    if (/(no ambience|no background|sin ambiente|silence only)/.test(lower)) ambienceInput.value = 'none';
+    else if (/(deep|hum|grounding|grave|zumbido)/.test(lower)) ambienceInput.value = 'deep';
+    else if (/(ambience|background|soft|air|suave|ambiente)/.test(lower)) ambienceInput.value = 'soft';
+
+    nameInput.value = `${intentionInput.options[intentionInput.selectedIndex].text} meditation`;
+    formMessage.textContent = 'Your prompt has been turned into a session. Review or adjust the choices below.';
+    renderPreview();
+  }
 
   function selectedSegments() {
     return optionInputs.filter(input => input.checked).map(input => input.value);
@@ -54,7 +138,7 @@
       used += seconds;
       return { key, seconds, name: segmentCopy[key].name, prompt: segmentCopy[key].prompts[intentionInput.value] };
     });
-    return { name: nameInput.value.trim() || 'My meditation', intention: intentionInput.value, minutes: Number(lengthInput.value), voice: voiceInput.value, ambience: ambienceInput.value, steps };
+    return { name: nameInput.value.trim() || 'My meditation', intention: intentionInput.value, minutes: Number(lengthInput.value), voice: voiceInput.value, voiceId: voiceChoice.value, ambience: ambienceInput.value, steps };
   }
 
   function durationLabel(seconds) {
@@ -89,6 +173,11 @@
     const message = new SpeechSynthesisUtterance(text);
     message.rate = 0.82;
     message.pitch = 0.95;
+    const narrator = selectedVoice();
+    if (narrator) {
+      message.voice = narrator;
+      message.lang = narrator.lang;
+    }
     window.speechSynthesis.speak(message);
   }
 
@@ -208,6 +297,7 @@
   }
 
   form.addEventListener('input', renderPreview);
+  promptButton.addEventListener('click', interpretPrompt);
   form.addEventListener('submit', event => {
     event.preventDefault();
     session = buildSession();
@@ -251,6 +341,7 @@
     intentionInput.value = data.intention;
     lengthInput.value = String(data.minutes);
     voiceInput.value = data.voice;
+    voiceChoice.value = data.voiceId || 'auto';
     ambienceInput.value = data.ambience;
     const keys = data.steps.map(step => step.key);
     optionInputs.forEach(input => { input.checked = keys.includes(input.value); });
@@ -261,5 +352,7 @@
 
   renderPreview();
   refreshSavedStatus();
+  refreshVoices();
+  if ('speechSynthesis' in window) window.speechSynthesis.onvoiceschanged = refreshVoices;
 }());
 

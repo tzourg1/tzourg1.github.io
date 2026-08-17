@@ -27,6 +27,14 @@
     <form id="builder-form" class="builder-panel" aria-labelledby="builder-heading">
       <h2 id="builder-heading">Design your session</h2>
 
+      <section class="prompt-builder" aria-labelledby="prompt-heading">
+        <h3 id="prompt-heading">Describe the meditation you want</h3>
+        <p class="field-help">Include a length, intention, and any steps you prefer. You can adjust everything afterward.</p>
+        <label for="meditation-prompt">Your meditation prompt</label>
+        <textarea class="form-control" id="meditation-prompt" rows="4" placeholder="Create a 15-minute meditation for confidence before a chess tournament, with breathing, visualization, and a quiet ending."></textarea>
+        <button class="btn btn-meditation" id="create-from-prompt" type="button">Create from prompt</button>
+      </section>
+
       <div class="form-group">
         <label for="session-name">Session name</label>
         <input class="form-control" id="session-name" maxlength="60" value="My meditation">
@@ -83,6 +91,15 @@
             <option value="deep">Deep hum</option>
           </select>
         </div>
+      </div>
+
+      <div class="form-group voice-preference">
+        <label for="voice-choice">Narrator voice</label>
+        <select class="form-control" id="voice-choice">
+          <option value="auto">Prefer a Latin American Spanish feminine voice</option>
+          <option value="default">Use this device’s default voice</option>
+        </select>
+        <small id="voice-status">Checking the voices available on this device…</small>
       </div>
 
       <p id="form-message" class="form-message" role="alert"></p>
