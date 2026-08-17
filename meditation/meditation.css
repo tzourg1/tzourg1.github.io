@@ -1,0 +1,37 @@
+:root {
+  --ink: #f7f5f2;
+  --muted: #c8c3cc;
+  --surface: #17151b;
+  --card: #24212a;
+  --accent: #a978b1;
+  --accent-dark: #6b3972;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--surface); color: var(--ink); font-family: Arial, sans-serif; line-height: 1.65; padding-top: 56px; }
+a { color: #dfb8e6; }
+a:hover { color: #fff; }
+.skip-link { background: #fff; color: #111; left: 1rem; padding: .75rem 1rem; position: fixed; top: -5rem; z-index: 2000; }
+.skip-link:focus { top: 1rem; }
+.meditation-hero { background: linear-gradient(135deg, rgba(20,18,24,.9), rgba(107,57,114,.82)), url('/ChessJitsuCoverPhotoUltimate.png') center/cover; padding: 6rem 0 5rem; text-align: center; }
+.meditation-hero h1 { font-size: clamp(2.4rem, 7vw, 4.5rem); font-weight: 700; }
+.meditation-hero p { color: var(--muted); font-size: 1.15rem; margin: 1rem auto 0; max-width: 42rem; }
+.practice-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); padding: 4rem 0; }
+.practice-card { background: var(--card); border: 1px solid #403a48; border-radius: .75rem; display: flex; flex-direction: column; overflow: hidden; }
+.practice-card img { aspect-ratio: 16/9; object-fit: cover; width: 100%; }
+.practice-card-body { display: flex; flex: 1; flex-direction: column; padding: 1.5rem; }
+.practice-card p { color: var(--muted); }
+.practice-card .btn { align-self: flex-start; background: var(--accent-dark); border-color: var(--accent); margin-top: auto; }
+.practice-card .btn:hover, .practice-card .btn:focus { background: var(--accent); border-color: #fff; color: #111; }
+.watch-main { min-height: calc(100vh - 200px); padding: 3.5rem 0; }
+.watch-header { margin: 0 auto 2rem; max-width: 850px; }
+.eyebrow { color: #d8aee0; font-size: .85rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.video-frame { aspect-ratio: 16/9; background: #000; border: 1px solid #4d4655; border-radius: .75rem; box-shadow: 0 1rem 3rem rgba(0,0,0,.35); overflow: hidden; }
+.video-frame iframe { border: 0; height: 100%; width: 100%; }
+.watch-notes { background: var(--card); border-radius: .75rem; margin-top: 2rem; padding: 1.5rem; }
+.watch-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+.btn-meditation { background: var(--accent-dark); border: 1px solid var(--accent); color: #fff; }
+.btn-meditation:hover, .btn-meditation:focus { background: var(--accent); color: #111; }
+.site-footer { background: #343a40; color: #fff; padding: 2rem 0; text-align: center; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
