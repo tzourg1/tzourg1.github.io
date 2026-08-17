@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meditation Builder | ChessJitsu.net</title>
+  <meta name="description" content="Create and play a personalized guided meditation session in your browser.">
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/meditation/meditation.css" rel="stylesheet">
+  <link href="/meditation/builder.css" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <script src="/vendor/jquery/jquery.min.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to meditation builder</a>
+  <div id="navbar_container"></div>
+
+  <header class="builder-hero">
+    <div class="container">
+      <p class="eyebrow">ChessJitsu Meditation Builder</p>
+      <h1>Build a practice for this moment.</h1>
+      <p>Choose your intention and the steps that feel useful. Your session stays private in this browser.</p>
+    </div>
+  </header>
+
+  <main id="main-content" class="container builder-layout" tabindex="-1">
+    <form id="builder-form" class="builder-panel" aria-labelledby="builder-heading">
+      <h2 id="builder-heading">Design your session</h2>
+
+      <div class="form-group">
+        <label for="session-name">Session name</label>
+        <input class="form-control" id="session-name" maxlength="60" value="My meditation">
+      </div>
+
+      <div class="builder-row">
+        <div class="form-group">
+          <label for="intention">Intention</label>
+          <select class="form-control" id="intention">
+            <option value="calm">Calm</option>
+            <option value="focus">Focus</option>
+            <option value="confidence">Confidence</option>
+            <option value="recovery">Recovery</option>
+            <option value="sleep">Rest and sleep</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="session-length">Length</label>
+          <select class="form-control" id="session-length">
+            <option value="5">5 minutes</option>
+            <option value="10" selected>10 minutes</option>
+            <option value="15">15 minutes</option>
+            <option value="20">20 minutes</option>
+          </select>
+        </div>
+      </div>
+
+      <fieldset>
+        <legend>Choose your steps</legend>
+        <p class="field-help">The time is divided evenly across the steps you select.</p>
+        <div id="segment-options" class="segment-options">
+          <label><input type="checkbox" value="arrive" checked> <span><strong>Arrive</strong><small>Settle into your posture and the present moment.</small></span></label>
+          <label><input type="checkbox" value="breathe" checked> <span><strong>Breathing</strong><small>Follow an easy, natural rhythm.</small></span></label>
+          <label><input type="checkbox" value="body" checked> <span><strong>Body scan</strong><small>Notice sensation without needing to change it.</small></span></label>
+          <label><input type="checkbox" value="visualize"> <span><strong>Visualization</strong><small>Picture the quality you want to carry forward.</small></span></label>
+          <label><input type="checkbox" value="silence" checked> <span><strong>Quiet space</strong><small>Practice in silence between gentle bells.</small></span></label>
+          <label><input type="checkbox" value="close" checked> <span><strong>Closing</strong><small>Return attention and finish with intention.</small></span></label>
+        </div>
+      </fieldset>
+
+      <div class="builder-row settings-row">
+        <div class="form-group">
+          <label for="voice-setting">Guidance</label>
+          <select class="form-control" id="voice-setting">
+            <option value="spoken">Spoken prompts</option>
+            <option value="text">On-screen prompts only</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="ambience">Ambience</label>
+          <select class="form-control" id="ambience">
+            <option value="none">None</option>
+            <option value="soft">Soft air</option>
+            <option value="deep">Deep hum</option>
+          </select>
+        </div>
+      </div>
+
+      <p id="form-message" class="form-message" role="alert"></p>
+      <div class="builder-actions">
+        <button class="btn btn-meditation" type="submit">Build session</button>
+        <button class="btn btn-outline-light" id="save-session" type="button">Save on this device</button>
+      </div>
+    </form>
+
+    <aside class="preview-panel" aria-labelledby="preview-heading">
+      <p class="eyebrow">Session preview</p>
+      <h2 id="preview-heading">My meditation</h2>
+      <p id="preview-summary">10 minutes for calm</p>
+      <ol id="session-plan" class="session-plan"></ol>
+      <div class="saved-box">
+        <h3>Saved session</h3>
+        <p id="saved-status">Nothing saved on this device yet.</p>
+        <button class="btn btn-sm btn-outline-light" id="load-session" type="button" hidden>Load saved session</button>
+      </div>
+    </aside>
+  </main>
+
+  <section id="player" class="player-shell" aria-labelledby="player-title" hidden>
+    <div class="container player-content">
+      <p class="eyebrow">Now practicing</p>
+      <h2 id="player-title">My meditation</h2>
+      <p id="current-step" class="current-step" aria-live="polite">Ready when you are.</p>
+      <div id="timer" class="timer" role="timer" aria-label="Time remaining">10:00</div>
+      <div class="progress" aria-hidden="true"><div id="session-progress" class="progress-bar"></div></div>
+      <div class="player-actions">
+        <button class="btn btn-meditation" id="play-pause" type="button">Start session</button>
+        <button class="btn btn-outline-light" id="restart-session" type="button">Restart</button>
+        <button class="btn btn-link" id="close-player" type="button">Return to builder</button>
+      </div>
+      <p class="player-note">Keep this tab open while the session is playing. Spoken prompts depend on voice support in your browser.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer"><div class="container"><p class="mb-0">Copyright &copy; ChessJitsu.net 2026</p></div></footer>
+  <script>$(function () { $('#navbar_container').load('/navbar.html'); });</script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/meditation/builder.js"></script>
+</body>
+</html>
+
