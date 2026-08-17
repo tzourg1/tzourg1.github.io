@@ -1,0 +1,36 @@
+:root {
+  --ink: #f7f5f2;
+  --muted: #c8c3cc;
+  --surface: #17151b;
+  --card: #24212a;
+  --accent: #a978b1;
+  --accent-dark: #6b3972;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--surface); color: var(--ink); font-family: Arial, sans-serif; line-height: 1.65; padding-top: 56px; }
+a { color: #dfb8e6; }
+a:hover { color: #fff; }
+.skip-link { background: #fff; color: #111; left: 1rem; padding: .75rem 1rem; position: fixed; top: -5rem; z-index: 2000; }
+.skip-link:focus { top: 1rem; }
+.concept-hero { background: linear-gradient(135deg, rgba(20,18,24,.92), rgba(107,57,114,.84)), url('/ChessJitsuCoverPhotoUltimate.png') center/cover; padding: 6rem 0 5rem; text-align: center; }
+.concept-hero h1 { font-size: clamp(2.8rem, 8vw, 5rem); font-weight: 700; }
+.concept-hero > .container > p:last-child { color: var(--muted); font-size: 1.15rem; margin: 1rem auto 0; max-width: 48rem; }
+.eyebrow { color: #d8aee0; font-size: .85rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.concept-notes { background: var(--card); border-radius: .75rem; margin-top: 2rem; padding: 1.5rem; }
+.concept-notes h2 { font-size: clamp(1.6rem, 4vw, 2rem); }
+.concept-notes > p:last-child { color: var(--muted); margin-bottom: 0; }
+.resource-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); padding: 4rem 0; }
+.resource-card { background: var(--card); border: 1px solid #403a48; border-radius: .75rem; display: flex; flex-direction: column; overflow: hidden; }
+.resource-card img, .article-art { aspect-ratio: 16/9; width: 100%; }
+.resource-card img { object-fit: cover; }
+.article-art { align-items: center; background: linear-gradient(135deg, #17151b, #6b3972); display: flex; flex-direction: column; justify-content: center; text-align: center; }
+.article-art span { color: #d8aee0; font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 700; letter-spacing: .04em; }
+.article-art strong { color: #fff; font-family: Georgia, serif; font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1; }
+.resource-card-body { display: flex; flex: 1; flex-direction: column; padding: 1.5rem; }
+.resource-card-body h2 { font-size: 1.55rem; }
+.resource-card-body > p:not(.eyebrow) { color: var(--muted); }
+.btn-resource { align-self: flex-start; background: var(--accent-dark); border: 1px solid var(--accent); color: #fff; margin-top: auto; }
+.btn-resource:hover, .btn-resource:focus { background: var(--accent); border-color: #fff; color: #111; }
+.site-footer { background: #343a40; color: #fff; padding: 2rem 0; text-align: center; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
