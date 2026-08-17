@@ -1,0 +1,22 @@
+:root { --cj-ink: #f7f5f2; --cj-muted: #c8c3cc; --cj-surface: #17151b; --cj-card: #24212a; --cj-accent: #a978b1; --cj-accent-dark: #6b3972; }
+body { background: var(--cj-surface); color: var(--cj-ink); line-height: 1.7; padding-top: 56px; }
+a { color: #dfb8e6; } a:hover { color: #fff; }
+.skip-link { background: #fff; color: #111; left: 1rem; padding: .75rem 1rem; position: fixed; top: -5rem; z-index: 2000; } .skip-link:focus { top: 1rem; }
+.content-hero { background: linear-gradient(135deg, rgba(20,18,24,.93), rgba(107,57,114,.8)), url('/ChessJitsuCoverPhotoUltimate.png') center/cover; padding: 5rem 0 4rem; text-align: center; }
+.content-hero h1 { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 700; margin: 0 auto; max-width: 850px; }
+.content-hero p { color: var(--cj-muted); font-size: 1.1rem; margin: 1rem auto 0; max-width: 42rem; }
+.eyebrow { color: #d8aee0; font-size: .85rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.content-main { padding-bottom: 4rem; padding-top: 4rem; }
+.video-frame { aspect-ratio: 16/9; background: #000; border: 1px solid #4d4655; border-radius: .8rem; box-shadow: 0 1rem 3rem rgba(0,0,0,.35); overflow: hidden; }
+.video-frame iframe { border: 0; height: 100%; width: 100%; }
+.content-card { background: var(--cj-card); border: 1px solid #403a48; border-radius: .8rem; margin-top: 2rem; padding: clamp(1.25rem, 4vw, 2.5rem); }
+.content-card h2, .content-card h3 { margin-top: 1.5rem; } .content-card h2:first-child { margin-top: 0; } .content-card li + li { margin-top: .75rem; }
+.content-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+.btn-cj { background: var(--cj-accent-dark); border: 1px solid var(--cj-accent); color: #fff; } .btn-cj:hover, .btn-cj:focus { background: var(--cj-accent); color: #111; }
+.article-wrap { margin: 0 auto; max-width: 820px; } .article-meta { color: var(--cj-muted); }
+.rule-list { counter-reset: rule; list-style: none; padding: 0; }
+.rule-list li { background: #1b1920; border-left: 3px solid var(--cj-accent); border-radius: 0 .5rem .5rem 0; padding: 1rem 1rem 1rem 3.5rem; position: relative; }
+.rule-list li::before { color: #dfb8e6; content: counter(rule); counter-increment: rule; font-size: 1.4rem; font-weight: 700; left: 1.2rem; position: absolute; top: .75rem; }
+.site-footer { background: #343a40; color: #fff; padding: 2rem 0; text-align: center; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
