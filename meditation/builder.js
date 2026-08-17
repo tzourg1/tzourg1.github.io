@@ -10,6 +10,36 @@
     close: { name: 'Closing', prompts: { calm: 'Notice what has softened. Carry one small piece of this calm with you.', focus: 'Choose the one thing that deserves your attention next.', confidence: 'Remember this steadiness is available each time you return to your breath.', recovery: 'Thank yourself for making room to pause and listen.', sleep: 'Release the practice and allow rest to continue in its own way.' } }
   };
 
+  const followUpCopy = {
+    arrive: [
+      'Notice the points where your body meets the surface beneath you.',
+      'Let the shoulders lower and allow the jaw to soften.',
+      'If the mind is busy, simply notice that and return to this moment.'
+    ],
+    breathe: [
+      'Feel the beginning, middle, and end of the next breath.',
+      'There is nothing to force. Let the breath find its own comfortable pace.',
+      'When attention wanders, gently return to the feeling of breathing.'
+    ],
+    body: [
+      'Bring attention to the face, neck, and shoulders. Notice what is present.',
+      'Move awareness through the chest, belly, back, and hands.',
+      'Notice the hips, legs, and feet, allowing the whole body to be included.'
+    ],
+    visualize: [
+      'Make the image a little clearer. Notice its colors, shapes, and atmosphere.',
+      'Imagine yourself meeting this moment with the quality you want to develop.',
+      'Let the image become a feeling you can carry in the body.'
+    ],
+    silence: [
+      'If you have drifted into thought, return gently to the breath and the quiet around it.'
+    ],
+    close: [
+      'Begin to notice the room around you while keeping some attention inside.',
+      'Take one fuller breath and choose what you want to carry forward.'
+    ]
+  };
+
   const form = document.querySelector('#builder-form');
   const promptInput = document.querySelector('#meditation-prompt');
   const promptButton = document.querySelector('#create-from-prompt');
@@ -40,6 +70,7 @@
   let elapsed = 0;
   let intervalId = null;
   let activeSegment = -1;
+  let activeCue = -1;
   let audioContext = null;
   let ambienceNodes = [];
   let availableVoices = [];
@@ -230,6 +261,10 @@
     return session.steps.length - 1;
   }
 
+  function segmentStartAt(index) {
+    return session.steps.slice(0, index).reduce((total, step) => total + step.seconds, 0);
+  }
+
   function updatePlayer() {
     const total = session.minutes * 60;
     const remaining = Math.max(0, total - elapsed);
@@ -238,10 +273,22 @@
     const index = stepAt(elapsed);
     if (index !== activeSegment) {
       activeSegment = index;
+      activeCue = -1;
       const step = session.steps[index];
       currentStep.textContent = step.prompt;
       bell();
       window.setTimeout(() => speak(step.prompt), 900);
+    } else {
+      const step = session.steps[index];
+      const cues = followUpCopy[step.key] || [];
+      const segmentElapsed = elapsed - segmentStartAt(index);
+      const cueSpacing = step.seconds / (cues.length + 1);
+      const cueIndex = cues.length ? Math.floor(segmentElapsed / cueSpacing) - 1 : -1;
+      if (cueIndex >= 0 && cueIndex < cues.length && cueIndex !== activeCue) {
+        activeCue = cueIndex;
+        currentStep.textContent = cues[cueIndex];
+        speak(cues[cueIndex]);
+      }
     }
     if (remaining === 0) finishSession();
   }
@@ -275,6 +322,7 @@
     pauseSession();
     elapsed = 0;
     activeSegment = -1;
+    activeCue = -1;
     timer.textContent = formatTimer(session.minutes * 60);
     progress.style.width = '0%';
     currentStep.textContent = 'Ready when you are.';
