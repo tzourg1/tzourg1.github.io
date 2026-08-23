@@ -79,6 +79,8 @@
   const feminineNamePattern = /(dalia|sabina|paulina|paloma|luciana|elena|sofia|maria|monica|rosa|laura|isabela|female|mujer)/i;
   const russianVoicePattern = /^ru(?:-|_)/i;
   const russianFeminineNamePattern = /(alena|alyona|anna|elena|irina|katya|katerina|milena|natalia|svetlana|tatyana|victoria|female|женщина)/i;
+  const chineseVoicePattern = /^zh(?:-|_)/i;
+  const chineseMasculineNamePattern = /(yunxi|yunyang|kangkang|xiaogang|liang|male|man|男性|男声)/i;
 
   function preferredLatinVoice() {
     const latinVoices = availableVoices.filter(voice => latinVoicePattern.test(voice.lang));
@@ -90,9 +92,15 @@
     return russianVoices.find(voice => russianFeminineNamePattern.test(voice.name)) || russianVoices[0] || null;
   }
 
+  function preferredChineseVoice() {
+    const chineseVoices = availableVoices.filter(voice => chineseVoicePattern.test(voice.lang));
+    return chineseVoices.find(voice => chineseMasculineNamePattern.test(voice.name)) || chineseVoices[0] || null;
+  }
+
   function selectedVoice() {
     if (voiceChoice.value === 'default') return null;
     if (voiceChoice.value === 'russian-grandmother') return preferredRussianVoice();
+    if (voiceChoice.value === 'chinese-grandfather') return preferredChineseVoice();
     if (voiceChoice.value !== 'auto') return availableVoices.find(voice => voice.voiceURI === voiceChoice.value) || null;
     return preferredLatinVoice();
   }
@@ -103,6 +111,13 @@
       voiceStatus.textContent = russian
         ? `Russian Grandmother will use ${russian.name} (${russian.lang}) with slower, gentler delivery. Voice quality varies by device.`
         : 'No Russian voice was found. The device default voice will use the slower, gentler delivery.';
+      return;
+    }
+    if (voiceChoice.value === 'chinese-grandfather') {
+      const chinese = preferredChineseVoice();
+      voiceStatus.textContent = chinese
+        ? `Chinese grandfather will use ${chinese.name} (${chinese.lang}) with slower, deeper delivery. Voice quality varies by device.`
+        : 'No Chinese voice was found. The device default voice will use the slower, deeper delivery.';
       return;
     }
     const preferred = preferredLatinVoice();
@@ -222,8 +237,9 @@
     window.speechSynthesis.cancel();
     const message = new SpeechSynthesisUtterance(text);
     const russianGrandmother = voiceChoice.value === 'russian-grandmother';
-    message.rate = russianGrandmother ? 0.72 : 0.82;
-    message.pitch = russianGrandmother ? 0.82 : 0.95;
+    const chineseGrandfather = voiceChoice.value === 'chinese-grandfather';
+    message.rate = russianGrandmother ? 0.72 : chineseGrandfather ? 0.7 : 0.82;
+    message.pitch = russianGrandmother ? 0.82 : chineseGrandfather ? 0.72 : 0.95;
     const narrator = selectedVoice();
     if (narrator) {
       message.voice = narrator;
