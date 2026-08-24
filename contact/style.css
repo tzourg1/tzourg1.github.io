@@ -13,6 +13,7 @@
 body {
   margin: 0;
   min-height: 100vh;
+  padding-top: 56px;
   background:
     radial-gradient(circle at 12% 8%, rgba(141, 75, 177, 0.16), transparent 30rem),
     radial-gradient(circle at 90% 78%, rgba(228, 188, 88, 0.08), transparent 28rem),
@@ -115,7 +116,7 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(228, 188, 88, 0.14);
 }
 
-button {
+.form-card button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,8 +135,8 @@ button {
   transition: transform 150ms ease, box-shadow 150ms ease;
 }
 
-button:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(228, 188, 88, 0.23); }
-button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.form-card button:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(228, 188, 88, 0.23); }
+.form-card button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 
 .privacy-note {
   margin: 0.9rem 0 0;
