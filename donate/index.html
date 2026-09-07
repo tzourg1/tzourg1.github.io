@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Support the creation of thoughtful chess and Brazilian Jiu-Jitsu products from ChessJitsu.">
+  <meta name="author" content="Tseren Zurganov">
+  <meta name="theme-color" content="#0d100d">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.chessjitsu.net/donate/">
+  <meta property="og:title" content="Support ChessJitsu">
+  <meta property="og:description" content="Help ChessJitsu create thoughtful chess and Brazilian Jiu-Jitsu products.">
+  <meta property="og:image" content="https://www.chessjitsu.net/ChessJitsuCoverPhotoUltimate.png">
+  <title>Support ChessJitsu</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/gif" href="/favicon.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/donate/style.css" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="navbar_container"></div>
+  <main id="main-content" tabindex="-1">
+    <section class="support-hero" aria-labelledby="support-title">
+      <div class="support-copy">
+        <p class="eyebrow">SUPPORT CHESSJITSU</p>
+        <h1 id="support-title">Help bring more ChessJitsu ideas to life.</h1>
+        <p class="intro-copy">I want to make great chess and Brazilian Jiu-Jitsu products. Your support gives me more time and resources to build useful apps, training tools, and original content.</p>
+        <p class="creator-note">Thank you for believing in what I am creating.<br><strong>— Tseren</strong></p>
+      </div>
+      <aside class="donation-card" aria-labelledby="donation-heading">
+        <div class="piece-mark" aria-hidden="true">♞</div>
+        <p class="card-label">MAKE A CONTRIBUTION</p>
+        <h2 id="donation-heading">Support the next move.</h2>
+        <p>Your contribution helps ChessJitsu continue developing thoughtful products for people who love chess and Brazilian Jiu-Jitsu.</p>
+        <a class="donate-button" href="https://www.paypal.com/donate/?business=VB3NXTCQ5KASY&amp;no_recurring=0&amp;item_name=I+want+to+make+great+chess+and+jiu-jitsu+products+but+resources+and+time+are+impediments+to+everybody.+&amp;currency_code=USD" target="_blank" rel="noopener noreferrer">Donate with PayPal <span aria-hidden="true">→</span><span class="sr-only"> (opens in a new tab)</span></a>
+        <p class="fine-print">Contributions are voluntary and are not tax-deductible charitable donations.</p>
+      </aside>
+    </section>
+  </main>
+  <div id="footer_container"></div>
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(function () {
+      $('#navbar_container').load('/navbar.html');
+      $('#footer_container').load('/footer.html');
+    });
+  </script>
+</body>
+</html>
