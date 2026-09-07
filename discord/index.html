@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Join the official ChessJitsu Discord community for chess discussion, guided meditation, app support, and training resources.">
+  <meta name="author" content="Tseren Zurganov">
+  <meta name="theme-color" content="#0d100d">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.chessjitsu.net/discord/">
+  <meta property="og:title" content="Join the ChessJitsu Discord">
+  <meta property="og:description" content="Connect with ChessJitsu players, train your chess mind, and share your progress.">
+  <meta property="og:image" content="https://www.chessjitsu.net/ChessJitsuCoverPhotoUltimate.png">
+  <title>ChessJitsu Discord Community</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/gif" href="/favicon.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/discord/style.css" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="navbar_container"></div>
+  <main id="main-content" tabindex="-1">
+    <section class="community-hero" aria-labelledby="community-title">
+      <div class="community-copy">
+        <p class="eyebrow">THE CHESSJITSU COMMUNITY</p>
+        <h1 id="community-title">Train together. Improve together.</h1>
+        <p class="intro-copy">Join the official ChessJitsu Discord to discuss chess principles, practice the pre-move checklist, explore guided meditations, share your progress, and help shape the app.</p>
+        <div class="community-points" aria-label="Community highlights">
+          <span>Chess discussion</span>
+          <span>Training resources</span>
+          <span>App support</span>
+        </div>
+      </div>
+      <aside class="discord-card" aria-labelledby="discord-heading">
+        <div class="discord-mark" aria-hidden="true">♞</div>
+        <p class="card-label">YOUR NEXT MOVE</p>
+        <h2 id="discord-heading">Enter the ChessJitsu community.</h2>
+        <p>Meet fellow players, exchange ideas, and build a calmer, sharper chess mind.</p>
+        <a class="discord-button" href="https://discord.gg/2fMAc7ywvV" target="_blank" rel="noopener noreferrer">Join us on Discord <span aria-hidden="true">→</span><span class="sr-only"> (opens in a new tab)</span></a>
+        <p class="fine-print">This invite does not expire.</p>
+      </aside>
+    </section>
+  </main>
+  <div id="footer_container"></div>
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(function () {
+      $('#navbar_container').load('/navbar.html');
+      $('#footer_container').load('/footer.html');
+    });
+  </script>
+</body>
+</html>
