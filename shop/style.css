@@ -1,0 +1,28 @@
+:root { color-scheme: dark; --cream: #f7f2e8; --muted: #bbb3c6; --gold: #e4bc58; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; color: var(--cream); background: radial-gradient(circle at 15% 20%, #8e3ed12e, transparent 40rem), #0d0a12; font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+header, main { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+header { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 30px; flex-wrap: wrap; }
+a { color: inherit; }
+.brand { font-size: 1.05rem; font-weight: 800; letter-spacing: .16em; text-decoration: none; }
+.brand span { color: var(--gold); }
+.home { color: var(--muted); font-size: .875rem; text-underline-offset: 4px; padding-block: 12px; }
+main { padding-block: 20px 40px; }
+h1 { margin: 0; font-size: clamp(2.5rem, 6vw, 4rem); letter-spacing: -.04em; }
+.intro { margin: 12px 0 30px; color: var(--muted); font-size: 1.125rem; line-height: 1.6; }
+.products { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+article { display: flex; flex-direction: column; min-width: 0; overflow: hidden; background: #17111f; border: 1px solid #ffffff1a; border-radius: 24px; }
+.art { display: block; background: #eee; }
+.art img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+.copy { display: flex; flex-direction: column; flex: 1; padding: 28px; }
+h2 { margin: 0; font-size: clamp(1.4rem, 3vw, 1.85rem); line-height: 1.25; }
+h2 a { text-decoration: none; }
+.copy p { color: var(--muted); line-height: 1.7; margin: 16px 0 24px; }
+.actions { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin-top: auto; }
+.shop-button { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 20px; color: #16100a; background: linear-gradient(135deg, #f2d177, var(--gold)); border-radius: 10px; font-weight: 800; text-decoration: none; }
+.shop-button:hover { background: #f2d177; }
+.details { font-size: .875rem; text-underline-offset: 4px; padding-block: 14px; }
+a:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+.art:focus-visible { outline-offset: -5px; }
+.retailer-note { color: var(--muted); font-size: .875rem; line-height: 1.6; margin-top: 28px; }
+@media (max-width: 640px) { header, main { width: calc(100% - 32px); } .products { grid-template-columns: 1fr; gap: 24px; } .copy { padding: 24px; } header { padding-block: 20px; } }
