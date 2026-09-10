@@ -11,13 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/shop/style.css" rel="stylesheet">
+  <link href="/shop/navigation.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <a class="brand" href="/" aria-label="ChessJitsu home">CHESS<span>JITSU</span></a>
-    <a class="home" href="/">Back to home</a>
-  </header>
+  <div id="navbar_container"></div>
   <main>
     <h1>Shop</h1>
     <p class="intro">Chess and jiu-jitsu. Wear what you love.</p>
@@ -51,5 +50,8 @@
     </div>
     <p class="retailer-note">Choose your size and color on TeePublic. Purchases and fulfillment are handled by TeePublic.</p>
   </main>
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>$(function () { $('#navbar_container').load('/navbar.html'); });</script>
 </body>
 </html>
